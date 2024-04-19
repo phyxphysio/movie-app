@@ -2,7 +2,7 @@
 
 ## Project Goal
 
-Build aan with Javascript that lists movies for each user based on their preferences.
+Build an app with Javascript that lists movies for each user based on their preferences.
 
 ## Collaborators
 
