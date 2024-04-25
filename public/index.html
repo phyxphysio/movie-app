@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Homepage</title>
-        <link rel="stylesheet" href="styles/main.css">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie App - Home</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  </head>
+  <body>
+    <h1>Hello, movies!</h1>
+    <button hx-get="/movies" hx-swap="outerHTML">Show Movies</button>
+  </body>
 </html>
