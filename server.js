@@ -1,15 +1,41 @@
 const express = require("express");
 const axios = require("axios");
 const scraper_api_endpoint = "http://127.0.0.1:5000/";
+const User = require('./models/user');
+
 
 const app = express();
 const PORT = 4000;
 app.use(express.static("public"));
 
+
+// middleware to parse bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// middleware to serve static files from the 'public' directory
+app.use(express.static('public'));
+
+
 app.get("/", async (req, res) => {
   //   res.send("<h1>Hello World!</h1><a href='/movies'>See popular movies</a>");
   res.sendFile("index.html");
 });
+
+
+app.post('/register', async (req, res) => {
+    try {
+        const { username, password} = req.body;
+
+        const newUser = await User.create({ username, password });
+
+        res.status(201).json({ message: 'User registered successfully', user: newUser });
+    } catch (error) {
+        console.error('Error registering user:', error);
+        res.status(500).json({ message: 'An error occurred while registering user' });
+    }
+});
+
+
 app.get("/movies", async (req, res) => {
   try {
     const response = await axios.get(scraper_api_endpoint);
