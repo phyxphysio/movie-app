@@ -2,7 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const scraper_api_endpoint = "http://127.0.0.1:5000/";
 const User = require('./models/user');
-
+const path = require('path');
 
 const app = express();
 const PORT = 4000;
@@ -13,12 +13,16 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // middleware to serve static files from the 'public' directory
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   //   res.send("<h1>Hello World!</h1><a href='/movies'>See popular movies</a>");
-  res.sendFile("index.html");
+  res.sendFile(path.join(__dirname, 'public', 'main.html'));
+});
+
+app.get('/register', (req, res) =>{
+  res.sendFile(path.join(__dirname, 'public', 'register.html'))
 });
 
 
