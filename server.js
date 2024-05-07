@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-const scraper_api_endpoint = "http://127.0.0.1:5000/";
+const scraper_api_endpoint = "http://api:5001/movies";
 const User = require('./models/user');
 const path = require('path');
 
